@@ -6,7 +6,7 @@
 /*   By: francois <francois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:36:40 by francois          #+#    #+#             */
-/*   Updated: 2022/12/07 19:45:08 by francois         ###   ########.fr       */
+/*   Updated: 2022/12/07 20:46:24 by francois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 char	*findnewline(int fd, char *saved)
 {
 	char	*buffer;
+	int	r;
 
+	r = 1;
 	buffer = malloc ((BUFFER_SIZE + 1) * sizeof(char));
 	if (buffer == NULL)
 		return (0);
 	
-	while (ft_checkline(saved) == 0)
+	while (ft_checkline(saved) == 0 && r != 0)
 	{
-		read(fd, buffer, BUFFER_SIZE);
+		r = read(fd, buffer, BUFFER_SIZE);
+		buffer[r] = '\0';
 		saved = ft_strjoin(saved, buffer);
 	}
 	return (saved);

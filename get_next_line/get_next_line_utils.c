@@ -6,7 +6,7 @@
 /*   By: francois <francois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:38:30 by francois          #+#    #+#             */
-/*   Updated: 2022/12/07 19:23:24 by francois         ###   ########.fr       */
+/*   Updated: 2022/12/07 20:39:33 by francois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,21 @@ char	*cutline(char	*str)
 	char	*line;
 
 	i = 0;
-	while (str[i] != '\n')
+	while (str[i] && str[i] != '\n')
 		i++;
 	line = malloc((i + 2) * sizeof(char));
-	line[i] = '\n';
-	line[i + 1] = '\0';
 	i = 0;
-	while (str[i] != '\n')
+	while (str[i] && str[i] != '\n')
 	{
 		line[i] = str[i];
 		i++;
 	}
+	if (str[i] == '\n')
+	{
+		line[i] = '\n';
+		i++;
+	}
+	line[i] = '\0';
 	return (line);
 }
 
@@ -99,13 +103,13 @@ char	*cleanline(char	*str)
 	i = 0;
 	j = 0;
 	len = ft_strlen(str);
-	while (str[i] != '\n')
+	while (str[i] && str[i] != '\n')
 		i++;
 	cleaned = malloc(((len - i) + 1) * sizeof(char));
 	if (!cleaned)
 		return (NULL);
 	i++;
-	while (str[i] != '\0')
+	while (str[i] && str[i] != '\0')
 	{
 		cleaned[j] = str[i];
 		i++;
