@@ -1,2 +1,4 @@
 Ceci est un fichier test 
-Il y a un retour a la ligne
+Il y a un retour a la ligne, et la je vais en mettre un autre
+
+petit test
